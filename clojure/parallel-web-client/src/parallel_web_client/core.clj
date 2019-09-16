@@ -15,7 +15,7 @@
 
 (defn -main
   [& args]
-  (dotimes [x 2]
+  (dotimes [x 3]
     (set-interval request 250 4))
   (shutdown-agents))
 
