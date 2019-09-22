@@ -7,11 +7,11 @@ import java.io.PrintStream
 class Handler(socket: Socket) extends Runnable {
   def run() {
     val out = new PrintStream(socket.getOutputStream)
-        while(true) {
-            out.println("hello")
-            out.flush
-            Thread.sleep(1000)
-        }
+    while(true) {
+      out.println("hello")
+      out.flush
+      Thread.sleep(1000)
+    }
   }
 }
 
