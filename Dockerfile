@@ -73,3 +73,5 @@ COPY clojure/ /ref/clojure
 COPY haskell/ /ref/haskell
 COPY scala/ /ref/scala
 COPY elixir/ /ref/elixir
+COPY hadoop/ /ref/hadoop
+COPY flink/ /ref/flink
