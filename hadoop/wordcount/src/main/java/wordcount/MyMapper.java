@@ -13,8 +13,8 @@ public class MyMapper extends
     @Override
     protected void map(LongWritable key, Text value, Context context) 
             throws IOException, InterruptedException {
-        final String lien = value.toString();
-        String[] words= line.split(" ");
+        final String line = value.toString();
+        String[] words = line.split(" ");
 
         for (String word : words) {
             context.write(new Text(word), one);
