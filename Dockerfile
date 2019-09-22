@@ -75,3 +75,6 @@ COPY scala/ /ref/scala
 COPY elixir/ /ref/elixir
 COPY hadoop/ /ref/hadoop
 COPY flink/ /ref/flink
+
+# resource
+COPY resources/textfile /
