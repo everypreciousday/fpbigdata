@@ -26,9 +26,9 @@ class WordCountActor() extends Actor with ActorLogging {
        println(resultMap)
      }
      case Line(line) => {
-       line.split(" ").foreach(word => {
+       line.split(" ").foreach { word => 
          resultMap.put(word, resultMap.getOrElse(word, 0)+1)
-       })
+       } 
      }
    }
  }
