@@ -4,8 +4,8 @@ import akka.actor.{ Actor, ActorSystem, ActorRef, ActorLogging, Props, PoisonPil
 import collection.mutable.{HashMap, Map}
 import scala.io.Source
 
-case class WordCountMap(word:String, count:Integer)
-case class WordNum(num:Integer)
+case class WordCountMap(word: String, count: Int)
+case class WordNum(num: Int)
 
 class MapperActor(shufflerActor: ActorRef) extends Actor with ActorLogging {
    override def receive: Receive = {
@@ -22,10 +22,10 @@ class MapperActor(shufflerActor: ActorRef) extends Actor with ActorLogging {
 class ShufflerActor(reducerActorList: List[ActorRef]) extends Actor with ActorLogging {
    var receivedWordNum = 0
    override def receive: Receive = {
-     case WordNum(num:Integer) => {
+     case WordNum(num: Int) => {
         receivedWordNum += num
      }
-     case WordCountMap(word: String, count:Integer) => {
+     case WordCountMap(word: String, count: Int) => {
        val targetReducer = Math.abs(word.hashCode() % 2)
        println(targetReducer)
        reducerActorList(targetReducer) ! WordCountMap(word, count)
@@ -47,7 +47,7 @@ class ReducerActor() extends Actor with ActorLogging {
        println(resultMap)
        context.system.terminate()
      }
-     case WordCountMap(word:String, count:Integer) => {
+     case WordCountMap(word: String, count: Int) => {
        resultMap.put(word, resultMap.getOrElse(word, 0)+1)
        sender ! "finished"
      }
@@ -66,7 +66,7 @@ object Main {
        val mapperActor1 = system.actorOf(Props(classOf[MapperActor], shufflerActor), "mapperActor1")
        val mapperActor2 = system.actorOf(Props(classOf[MapperActor], shufflerActor), "mapperActor2")
 
-mapperActor1! "build.gradle"
+       mapperActor1! "build.gradle"
        mapperActor2! "src/main/scala/MapReduceWCActor/Actors.scala"
 
      }
