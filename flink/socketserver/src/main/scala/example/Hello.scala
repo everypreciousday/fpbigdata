@@ -16,23 +16,23 @@ class Handler(socket: Socket) extends Runnable {
 }
 
 object Hello {
-    def main(args: Array[String]):Unit = {
-        val port = 9000
-        val poolSize = 10
-        val server = new ServerSocket(port)
+  def main(args: Array[String]):Unit = {
+    val port = 9000
+    val poolSize = 10
+    val server = new ServerSocket(port)
 
-        val pool: ExecutorService = Executors.newFixedThreadPool(poolSize)
+    val pool: ExecutorService = Executors.newFixedThreadPool(poolSize)
 
-        try{
-            println("server waiting in 9000...")
-            while (true) {
-                val socket = server.accept
-                println("connected")
-                pool.execute(new Handler(socket))
-            }
-        }
-        catch {
-            case e: Exception => println(e.getStackTrace)
-        }
+    try{
+      println("server waiting in 9000...")
+      while (true) {
+        val socket = server.accept
+        println("connected")
+        pool.execute(new Handler(socket))
+      }
     }
+    catch {
+      case e: Exception => println(e.getStackTrace)
+    }
+  }
 }
