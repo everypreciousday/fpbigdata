@@ -1,22 +1,18 @@
-apply plugin: 'java'
-apply plugin: 'application'
+plugins {
+    id 'java'
+    id 'application'
+}
 
 repositories {
     mavenCentral()
 }
 
-ext {
-    hadoopVersion = '3.1.1'
-    junitVersion = '4.11'
-    mrUnitVersion = '1.1.0'
-    commonsVersion = '3.4'
+dependencies {
+    compile "org.apache.hadoop:hadoop-client:3.1.1"
+    compile "org.apache.commons:commons-lang3:3.4"
+    testCompile "junit:junit:4.11"
+    testCompile "org.apache.mrunit:mrunit:1.1.0:hadoop2"
+    testCompile "org.apache.hadoop:hadoop-minicluster:3.1.1"
 }
 
-dependencies {
-    compile "org.apache.hadoop:hadoop-client:$hadoopVersion"
-    compile "org.apache.commons:commons-lang3:$commonsVersion"
-    testCompile "junit:junit:$junitVersion"
-    testCompile "org.apache.mrunit:mrunit:$mrUnitVersion:hadoop2"
-    testCompile "org.apache.hadoop:hadoop-minicluster:$hadoopVersion"
-}
 mainClassName = 'maxscore.App'
