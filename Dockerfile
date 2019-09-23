@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 # basic
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN apt-get install software-properties-common wget curl unzip bzip2 vim nmon git openjdk-8-jdk -y
+RUN apt-get install software-properties-common wget curl unzip bzip2 vim nmon git openjdk-8-jdk tmux -y
 
 # Lisp
 RUN apt-get install -y clisp
